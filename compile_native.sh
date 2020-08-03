@@ -1,5 +1,3 @@
-pwd
-
 docker run \
   --rm \
   -v `pwd`:`pwd` \

@@ -23,7 +23,9 @@ namespace Thinktecture.Samples
             using var host = new Host(engine);
             using dynamic instance = host.Instantiate(module);
 
-            return new OkObjectResult(instance.fib(number));
+            var result = instance.fib(number);
+
+            return new OkObjectResult(result);
         }
     }
 }
