@@ -8,6 +8,9 @@
     <PackageReference Include="Wasmtime" Version="0.19.0-preview1" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="gcd.wat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
