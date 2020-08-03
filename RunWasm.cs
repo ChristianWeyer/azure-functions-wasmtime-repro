@@ -10,20 +10,20 @@ namespace Thinktecture.Samples
 {
     public static class RunWasm
     {
-        [FunctionName("RunWasm")]
+        [FunctionName("FibonacciWasm")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "fibonacci/{number}")]
+            HttpRequest request,
+            int number,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
             using var engine = new Engine();
-            using var module = Module.FromTextFile(engine, "gcd.wat");
+            using var module = Module.FromFile(engine, "fibonacci.wasm");
 
             using var host = new Host(engine);
             using dynamic instance = host.Instantiate(module);
 
-            return new OkObjectResult(instance.gcd(27, 6));
+            return new OkObjectResult(instance.fib(number));
         }
     }
 }
